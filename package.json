@@ -1,0 +1,24 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brachi-f/TinyURL.git"
+  },
+  "author": "Bracha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brachi-f/TinyURL/issues"
+  },
+  "homepage": "https://github.com/brachi-f/TinyURL#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}
