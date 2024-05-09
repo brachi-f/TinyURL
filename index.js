@@ -4,6 +4,7 @@ import bodyParser from "body-parser"
 import connectDB from './database.js'
 import UserRouter from './Routers/userRouter.js'
 import LinksRouter from './Routers/linkRouter.js'
+import RedirectRouter from './Routers/redirectRouter.js'
 
 
 const app = express()
@@ -11,6 +12,7 @@ connectDB()
 
 app.use(cors())
 app.use(bodyParser.json())
+app.use('/',RedirectRouter)
 app.use('/users', UserRouter)
 app.use('/links', LinksRouter)
 
