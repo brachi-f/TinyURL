@@ -12,9 +12,9 @@ connectDB()
 
 app.use(cors())
 app.use(bodyParser.json())
-app.use('/',RedirectRouter)
 app.use('/users', UserRouter)
 app.use('/links', LinksRouter)
+app.use('/',RedirectRouter)
 
 const port = 3000
 app.listen(port, () => {

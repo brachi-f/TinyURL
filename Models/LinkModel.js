@@ -17,7 +17,7 @@ const linkSchema = mongoose.Schema({
         require: true
     },
     clicks: [clickSchema],
-    targetParameterName: {
+    targetName: {
         type: String,
         require: true,
         default: "t"

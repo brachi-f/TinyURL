@@ -12,8 +12,8 @@ const redirectController = {
                 ipAddress: ipAddress
             });
     
-            if (link.targetParameterName && req.query[link.targetParameterName]) {
-                const targetName = req.query[link.targetParameterName];
+            if (link.targetName && req.query[link.targetName]) {
+                const targetName = req.query[link.targetName];
                 const target = link.targetValues.find(target => target.name === targetName);
                 if (target) {
                     target.value += 1;

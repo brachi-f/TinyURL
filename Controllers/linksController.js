@@ -21,10 +21,12 @@ const LinksController = {
 
     },
     addLink: async (req, res) => {
-        const { originalURL } = req.body
+        const { originalURL, targetName } = req.body
         const { userId } = req.params
         try {
-            const newLink = await LinkModel.create({ originalURL })
+            const linkToAdd = { originalURL: originalURL }
+            if (targetName) linkToAdd.targetName = targetName
+            const newLink = await LinkModel.create(linkToAdd)
             const user = await UserModel.findById(userId)
             user.links.push(newLink.id)
             await user.save()
@@ -59,10 +61,10 @@ const LinksController = {
     },
     addTarget: async (req, res) => {
         const { id } = req.params
+        const { targetName } = req.body
         try {
             const link = await LinkModel.findById(id)
-            const { targetName } = req.body
-            if (link.targetValues.find({ name: targetName }))
+            if (link.targetValues.find(t => t.name == targetName))
                 res.status(409).json({ message: `There is already a target name with this name` })
             const target = {
                 name: targetName,
@@ -70,18 +72,18 @@ const LinksController = {
             }
             link.targetValues.push(target)
             await link.save()
-            res.json(target)
+            res.json(link)
         } catch (e) {
             res.status(400).json({ message: e.message })
         }
     },
-    getTargets: async (req,res)=>{
-        const {id} = req.params
-        try{
+    getTargets: async (req, res) => {
+        const { id } = req.params
+        try {
             const link = await LinkModel.findById(id)
             const targets = link.targetValues
             res.json(targets)
-        }catch (e) {
+        } catch (e) {
             res.status(400).json({ message: e.message })
         }
     }
