@@ -8,5 +8,6 @@ UserRouter.get('/:id', UserController.getUserById)
 UserRouter.post('/', UserController.addUser)
 UserRouter.put('/:id', UserController.updateUser)
 UserRouter.delete('/:id', UserController.deleteUser)
+UserRouter.get('/:id/links', UserController.getLinks)
 
 export default UserRouter

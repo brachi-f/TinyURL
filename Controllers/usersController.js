@@ -44,6 +44,17 @@ const UserController = {
         } catch (e) {
             res.status(400).json({ message: e.message });
         }
+    },
+    getLinks: async (req, res) => {
+        const { id } = req.params
+        try {
+            const user = await UserModel.findById(id)
+            const links = user.links
+            res.json(links)
+        } catch (e) {
+            res.status(400).json({ message: e.message });
+        }
     }
+
 }
 export default UserController
