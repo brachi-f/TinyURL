@@ -45,17 +45,45 @@ const LinksController = {
 
     },
     deleteLink: async (req, res) => {
-        const {id, userId} = req.params
+        const { id, userId } = req.params
         try {
             const deleted = await LinkModel.findByIdAndDelete(id)
             const user = await UserModel.findById(userId)
-            user.links = user.links.filter(l=> l.toString() != id)
+            user.links = user.links.filter(l => l.toString() != id)
             await user.save()
             res.json(deleted)
         } catch (e) {
             res.status(400).json({ message: e.message })
         }
 
+    },
+    addTarget: async (req, res) => {
+        const { id } = req.params
+        try {
+            const link = await LinkModel.findById(id)
+            const { targetName } = req.body
+            if (link.targetValues.find({ name: targetName }))
+                res.status(409).json({ message: `There is already a target name with this name` })
+            const target = {
+                name: targetName,
+                value: 0
+            }
+            link.targetValues.push(target)
+            await link.save()
+            res.json(target)
+        } catch (e) {
+            res.status(400).json({ message: e.message })
+        }
+    },
+    getTargets: async (req,res)=>{
+        const {id} = req.params
+        try{
+            const link = await LinkModel.findById(id)
+            const targets = link.targetValues
+            res.json(targets)
+        }catch (e) {
+            res.status(400).json({ message: e.message })
+        }
     }
 }
 export default LinksController

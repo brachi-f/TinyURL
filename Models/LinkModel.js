@@ -12,11 +12,20 @@ const clickSchema = mongoose.Schema({
 })
 
 const linkSchema = mongoose.Schema({
-    originalURL:{
+    originalURL: {
         type: String,
         require: true
     },
-    clicks: [clickSchema]
+    clicks: [clickSchema],
+    targetParameterName: {
+        type: String,
+        require: true,
+        default: "t"
+    },
+    targetValues: [mongoose.Schema({
+        name: String,
+        value: Number
+    })]
 })
 
 
