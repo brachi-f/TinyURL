@@ -65,7 +65,7 @@ const LinksController = {
         try {
             const link = await LinkModel.findById(id)
             if (link.targetValues.find(t => t.name == targetName))
-                res.status(409).json({ message: `There is already a target name with this name` })
+              return  res.status(409).json({ message: `There is already a target name with this name` })
             const target = {
                 name: targetName,
                 value: 0

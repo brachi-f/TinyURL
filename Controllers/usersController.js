@@ -39,7 +39,7 @@ const UserController = {
     getLinks: async (req, res) => {
         const { id } = req.params
         try {
-            const user = await UserModel.findById(id)
+            const user = await UserModel.findById(id).populate('links')
             const links = user.links
             res.json(links)
         } catch (e) {
