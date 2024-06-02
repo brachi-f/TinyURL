@@ -25,7 +25,18 @@ Install the required libraries:
 Run the app:
 
     npm run
-***    
+
+**Client-side Application:**
+#
+> The client-side application for TinyURL provides a user-friendly interface for managing shortened links and tracking analytics. It includes features such as:
+>
+> - Graphical representation of click analytics
+> - Selection of different graphs to display (e.g., clicks by day, targets, total clicks)
+> - Integration with React.js for dynamic user interfaces
+> - Utilization of Semantic UI for styling and layout
+>
+> For more details and to access the client-side repository, visit [TinyURL-client](https://github.com/brachi-f/data-display).
+#
+
 > :memo: **Note:**
 > The database is of the MongoDB type, to run the application you need the connection string.
-
